@@ -1,0 +1,44 @@
+name: hvac_duct_calculator
+description: "Production-ready, globally localized HVAC Duct Sizing & Airflow Calculator."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Material 3 & UI
+  cupertino_icons: ^2.0.0
+  google_fonts: ^9.0.0
+  flutter_animate: ^4.5.0
+  intl: ^0.20.3
+
+  # State Management & Local Storage
+  flutter_riverpod: ^3.4.3
+  shared_preferences: ^2.2.3
+
+  # SQLite Database (Play Store Minimum Functionality & Offline Tables)
+  sqflite: ^2.3.3+1
+  path_provider: ^2.1.2
+  path: ^1.9.0
+
+  # Monetization (AdMob & RevenueCat)
+  google_mobile_ads: ^9.1.0
+  purchases_flutter: ^10.17.0
+
+  # Professional Job Sheet PDF Export & Printing
+  pdf: ^3.10.8
+  printing: ^5.12.0
+  share_plus: ^13.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

@@ -1,0 +1,46 @@
+{
+    "name": "HVAC Duct Sizing & Airflow Calculator",
+    "short_name": "HVAC Duct",
+    "id": "./",
+    "scope": "./",
+    "start_url": "./?source=pwa",
+    "display": "standalone",
+    "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+    "background_color": "#0F1216",
+    "theme_color": "#10B981",
+    "description": "Offline HVAC duct sizing and airflow calculator (ASHRAE, SMACNA, EN 1505/1506) with PDF job sheets.",
+    "categories": ["utilities", "productivity", "business"],
+    "orientation": "any",
+    "prefer_related_applications": false,
+    "shortcuts": [
+        {
+            "name": "Get the App",
+            "url": "./downloads.html",
+            "icons": [{ "src": "icons/Icon-192.png", "sizes": "192x192", "type": "image/png" }]
+        }
+    ],
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

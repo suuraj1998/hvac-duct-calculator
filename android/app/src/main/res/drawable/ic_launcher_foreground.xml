@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Duct cross-section with airflow bars, kept inside the 66dp safe zone -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,36h48a4,4 0 0,1 4,4v28a4,4 0 0,1 -4,4H30a4,4 0 0,1 -4,-4V40a4,4 0 0,1 4,-4z M34,42v24h40V42z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M39,48h30v4H39z M39,56h22v4H39z" />
+</vector>
