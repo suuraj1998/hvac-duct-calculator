@@ -39,7 +39,7 @@ class PdfExportService {
                       children: [
                         pw.Text(
                           'HVAC DUCT SIZING & AIRFLOW SPECIFICATION',
-                          style: const pw.TextStyle(
+                          style: pw.TextStyle(
                             color: PdfColors.white,
                             fontSize: 16,
                             fontWeight: pw.FontWeight.bold,
@@ -55,7 +55,7 @@ class PdfExportService {
                     ),
                     pw.Text(
                       'JOB SHEET',
-                      style: const pw.TextStyle(
+                      style: pw.TextStyle(
                         color: PdfColors.tealAccent,
                         fontSize: 14,
                         fontWeight: pw.FontWeight.bold,
@@ -78,7 +78,7 @@ class PdfExportService {
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       children: [
                         pw.Text('Job / Project Name: $jobName',
-                            style: const pw.TextStyle(
+                            style: pw.TextStyle(
                                 fontWeight: pw.FontWeight.bold)),
                         pw.Text('Client Location: $clientLocation'),
                       ],
@@ -96,7 +96,7 @@ class PdfExportService {
               pw.SizedBox(height: 20),
               pw.Text(
                 'PRIMARY DUCT SIZING RESULTS',
-                style: const pw.TextStyle(
+                style: pw.TextStyle(
                     fontSize: 12,
                     fontWeight: pw.FontWeight.bold,
                     color: PdfColors.blueGrey800),
@@ -112,17 +112,17 @@ class PdfExportService {
                       pw.Padding(
                           padding: const pw.EdgeInsets.all(6),
                           child: pw.Text('Parameter',
-                              style: const pw.TextStyle(
+                              style: pw.TextStyle(
                                   fontWeight: pw.FontWeight.bold))),
                       pw.Padding(
                           padding: const pw.EdgeInsets.all(6),
                           child: pw.Text('Imperial (ASHRAE)',
-                              style: const pw.TextStyle(
+                              style: pw.TextStyle(
                                   fontWeight: pw.FontWeight.bold))),
                       pw.Padding(
                           padding: const pw.EdgeInsets.all(6),
                           child: pw.Text('Metric (EN 1506)',
-                              style: const pw.TextStyle(
+                              style: pw.TextStyle(
                                   fontWeight: pw.FontWeight.bold))),
                     ],
                   ),
@@ -282,6 +282,113 @@ class PdfExportService {
     await Printing.layoutPdf(
       onLayout: (PdfPageFormat format) async => pdf.save(),
       name: 'HVAC_Job_Sheet_${jobName.replaceAll(" ", "_")}.pdf',
+    );
+  }
+
+  Future<void> exportScheduleSheet({
+    required List<DuctSegment> segments,
+    required String projectName,
+    required String engineerName,
+  }) async {
+    final pdf = pw.Document();
+    final formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(DateTime.now());
+
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        margin: const pw.EdgeInsets.all(32),
+        build: (pw.Context context) {
+          return pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Container(
+                padding: const pw.EdgeInsets.all(16),
+                decoration: pw.BoxDecoration(
+                  color: PdfColors.blueGrey900,
+                  borderRadius: pw.BorderRadius.circular(8),
+                ),
+                child: pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                  children: [
+                    pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          'MULTI-SEGMENT DUCTWORK SCHEDULE',
+                          style: pw.TextStyle(
+                            color: PdfColors.white,
+                            fontSize: 16,
+                            fontWeight: pw.FontWeight.bold,
+                          ),
+                        ),
+                        pw.SizedBox(height: 4),
+                        pw.Text(
+                          'Project Air Distribution Schedule & Sheet Metal Takeoff',
+                          style: const pw.TextStyle(
+                              color: PdfColors.teal100, fontSize: 10),
+                        ),
+                      ],
+                    ),
+                    pw.Text(
+                      'SCHEDULE SHEET',
+                      style: pw.TextStyle(
+                        color: PdfColors.tealAccent,
+                        fontSize: 12,
+                        fontWeight: pw.FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              pw.SizedBox(height: 12),
+              pw.Text('Project: $projectName • Engineer: $engineerName • Date: $formattedDate',
+                  style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold)),
+              pw.SizedBox(height: 14),
+              pw.Table(
+                border: pw.TableBorder.all(color: PdfColors.grey300),
+                children: [
+                  pw.TableRow(
+                    decoration: const pw.BoxDecoration(color: PdfColors.grey200),
+                    children: [
+                      pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('Segment Name', style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                      pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('Airflow', style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                      pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('Velocity', style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                      pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('Rect Size / Ø', style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                      pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('Friction', style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                      pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('Gauge (SMACNA)', style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9))),
+                    ],
+                  ),
+                  ...segments.map((seg) {
+                    final res = seg.result;
+                    final sizeStr = res.shape == DuctShape.round
+                        ? '${res.standardRoundDiameterIn}" Ø (${res.standardRoundDiameterMm.round()} mm)'
+                        : '${res.rectWidthIn}"x${res.rectHeightIn}" (${res.rectWidthMm.round()}x${res.rectHeightMm.round()} mm)';
+
+                    return pw.TableRow(
+                      children: [
+                        pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text(seg.name, style: const pw.TextStyle(fontSize: 9))),
+                        pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('${res.airflowCfm.round()} CFM / ${res.airflowLs.round()} L/s', style: const pw.TextStyle(fontSize: 9))),
+                        pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('${res.velocityFpm.round()} fpm / ${res.velocityMs.toStringAsFixed(1)} m/s', style: const pw.TextStyle(fontSize: 9))),
+                        pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text(sizeStr, style: const pw.TextStyle(fontSize: 9))),
+                        pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text('${res.frictionLossPer100FtInWg} in.wg', style: const pw.TextStyle(fontSize: 9))),
+                        pw.Padding(padding: const pw.EdgeInsets.all(5), child: pw.Text(res.recommendedGaugeSMACNA, style: const pw.TextStyle(fontSize: 9))),
+                      ],
+                    );
+                  }),
+                ],
+              ),
+              pw.Spacer(),
+              pw.Divider(color: PdfColors.grey300),
+              pw.Text('Generated by HVAC Duct Sizing & Airflow Calculator', style: const pw.TextStyle(fontSize: 8, color: PdfColors.grey600)),
+            ],
+          );
+        },
+      ),
+    );
+
+    await Printing.layoutPdf(
+      onLayout: (PdfPageFormat format) async => pdf.save(),
+      name: 'Duct_Schedule_${projectName.replaceAll(" ", "_")}.pdf',
     );
   }
 }

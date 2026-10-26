@@ -113,3 +113,15 @@ class CalculationResult {
     this.velocityWarning,
   });
 }
+
+class DuctSegment {
+  final String id;
+  final String name;
+  final CalculationResult result;
+
+  const DuctSegment({
+    required this.id,
+    required this.name,
+    required this.result,
+  });
+}

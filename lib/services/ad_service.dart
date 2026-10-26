@@ -7,11 +7,23 @@ class AdService {
   AdService._();
   static final AdService instance = AdService._();
 
-  // Override at build time, e.g. --dart-define=ADMOB_BANNER=ca-app-pub-xxx/yyy (defaults are Google test IDs)
-  static const String testBannerIdAndroid = String.fromEnvironment('ADMOB_BANNER', defaultValue: 'ca-app-pub-3940256099942544/6300978111');
-  static const String testInterstitialIdAndroid = String.fromEnvironment('ADMOB_INTERSTITIAL', defaultValue: 'ca-app-pub-3940256099942544/1033173712');
-  static const String testRewardedIdAndroid = String.fromEnvironment('ADMOB_REWARDED', defaultValue: 'ca-app-pub-3940256099942544/5224354917');
-  static const String testAppOpenIdAndroid = String.fromEnvironment('ADMOB_APP_OPEN', defaultValue: 'ca-app-pub-3940256099942544/9257390708');
+  /// Live Production AdMob Ad Unit IDs
+  static const String bannerIdAndroid = String.fromEnvironment(
+    'ADMOB_BANNER',
+    defaultValue: 'ca-app-pub-3744400504443798/1573738368',
+  );
+  static const String interstitialIdAndroid = String.fromEnvironment(
+    'ADMOB_INTERSTITIAL',
+    defaultValue: 'ca-app-pub-3744400504443798/7756003336',
+  );
+  static const String rewardedIdAndroid = String.fromEnvironment(
+    'ADMOB_REWARDED',
+    defaultValue: 'ca-app-pub-3744400504443798/5207615639',
+  );
+  static const String appOpenIdAndroid = String.fromEnvironment(
+    'ADMOB_APP_OPEN',
+    defaultValue: 'ca-app-pub-3744400504443798/1077154155',
+  );
 
   InterstitialAd? _interstitialAd;
   RewardedAd? _rewardedAd;
@@ -32,7 +44,7 @@ class AdService {
     if (!PlatformSupport.supportsAds) return;
     if (RevenueCatService.instance.isProUser) return;
     InterstitialAd.load(
-      adUnitId: testInterstitialIdAndroid,
+      adUnitId: interstitialIdAndroid,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
@@ -82,7 +94,7 @@ class AdService {
   void loadRewardedAd() {
     if (!PlatformSupport.supportsAds) return;
     RewardedAd.load(
-      adUnitId: testRewardedIdAndroid,
+      adUnitId: rewardedIdAndroid,
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
@@ -135,7 +147,7 @@ class AdService {
     if (!PlatformSupport.supportsAds) return;
     if (RevenueCatService.instance.isProUser) return;
     AppOpenAd.load(
-      adUnitId: testAppOpenIdAndroid,
+      adUnitId: appOpenIdAndroid,
       request: const AdRequest(),
       adLoadCallback: AppOpenAdLoadCallback(
         onAdLoaded: (ad) => _appOpenAd = ad,

@@ -28,7 +28,9 @@ dependencies:
 
   # Monetization (AdMob & RevenueCat)
   google_mobile_ads: ^9.1.0
+  web: ^1.0.0
   purchases_flutter: ^10.17.0
+  purchases_ui_flutter: ^10.17.0
 
   # Professional Job Sheet PDF Export & Printing
   pdf: ^3.10.8

@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import '../widgets/web_ad_banner.dart';
 import '../services/database_service.dart';
 
 class ReferenceLibraryScreen extends StatefulWidget {
@@ -70,9 +72,15 @@ class _ReferenceLibraryScreenState extends State<ReferenceLibraryScreen>
   Widget _buildSmacnaTab() {
     return ListView.separated(
       padding: const EdgeInsets.all(16),
-      itemCount: _smacnaData.length,
+      itemCount: _smacnaData.length + 1,
       separatorBuilder: (_, __) => const SizedBox(height: 12),
-      itemBuilder: (context, index) {
+      itemBuilder: (context, i) {
+        const adAt = 3;
+        if (i == adAt) {
+          return kIsWeb ? const WebInFeedAd() : const SizedBox.shrink();
+        }
+        final index = i > adAt ? i - 1 : i;
+        if (index >= _smacnaData.length) return const SizedBox.shrink();
         final row = _smacnaData[index];
         return Card(
           child: Padding(

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "fitpulse-spg"
+  },
+  "targets": {
+    "fitpulse-spg": {
+      "hosting": {
+        "hvac_site": [
+          "hvac-duct-calculator"
+        ]
+      }
+    }
+  }
+}
