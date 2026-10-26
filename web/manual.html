@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Guide - HVAC Duct Sizing &amp; Airflow Calculator</title>
+  <meta name="description" content="How to use the HVAC Duct Sizing Suite: duct sizer, schedule table, equal friction converter, reference library and PDF job sheets.">
+  <style>
+    body{margin:0;background:#0f1216;color:#cbd5e1;font-family:Roboto,Arial,sans-serif;line-height:1.6}
+    main{max-width:820px;margin:0 auto;padding:24px 16px 48px}
+    h1{color:#fff} h2{color:#10b981;margin-top:32px;font-size:1.15rem}
+    a{color:#06b6d4} li{margin-bottom:6px}
+    .btn{display:inline-block;background:#10b981;color:#003822;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold}
+  </style>
+</head>
+<body>
+<main>
+  <h1>HVAC Duct Sizing Suite - User Guide</h1>
+  <p><a class="btn" href="/">Open the calculator</a></p>
+
+  <h2>Quick start</h2>
+  <ol>
+    <li>Open the <b>Duct Sizer</b> tab.</li>
+    <li>Pick <b>Rectangular</b> or <b>Round</b>.</li>
+    <li>Enter <b>Airflow</b> and <b>Velocity</b> (and <b>Duct Height</b> for rectangular ducts).</li>
+    <li>The recommended duct size, friction loss, velocity pressure and free area update instantly.</li>
+    <li>Tap <b>Add to Schedule Table</b> to save the result, or <b>Export PDF Job Sheet</b> to create a report.</li>
+  </ol>
+
+  <h2>Tab 1 - Duct Sizer</h2>
+  <ul>
+    <li><b>Rectangular / Round</b>: choose the duct shape.</li>
+    <li><b>Airflow</b>: air volume (CFM in Imperial, L/s in Metric).</li>
+    <li><b>Velocity</b>: target air speed (fpm in Imperial, m/s in Metric).</li>
+    <li><b>Duct Height</b>: the fixed height available; the width is calculated.</li>
+    <li><b>Live 2D cross-section</b>: a drawing of the resulting duct.</li>
+    <li><b>Result card</b>: recommended size, Huebscher circular equivalent, friction loss, velocity pressure, free area and the SMACNA / DW144 gauge suggestion.</li>
+    <li><b>Refresh icon</b>: resets inputs to default values.</li>
+  </ul>
+
+  <h2>Tab 2 - Schedule Table</h2>
+  <ul>
+    <li>Lists every duct segment you added, with segment count and total airflow.</li>
+    <li>Segments are added from the Duct Sizer tab with <b>Add to Schedule Table</b>.</li>
+    <li><b>Export Schedule PDF</b> creates a multi-segment report.</li>
+  </ul>
+
+  <h2>Tab 3 - Equal Friction</h2>
+  <ul><li>Quick reference for unit conversions: airflow, velocity, duct size, friction loss and velocity pressure.</li></ul>
+
+  <h2>Top bar buttons</h2>
+  <ul>
+    <li><b>Imperial / Metric</b>: switch units. Values convert automatically.</li>
+    <li><b>Profile icon</b>: save your name, email and company. Stored only on your device and used on PDFs.</li>
+    <li><b>Red reset icon</b>: clears the app and starts from the beginning.</li>
+    <li><b>Question-mark icon</b>: opens this guide inside the app.</li>
+    <li><b>Book icon</b>: opens the Reference Library.</li>
+  </ul>
+
+  <h2>Reference Library</h2>
+  <ul>
+    <li><b>SMACNA Gauges</b>: sheet-metal gauge, thickness, maximum duct dimension and reinforcement class.</li>
+    <li><b>DW144 (UK/EU)</b>: duct construction thickness and class data.</li>
+    <li><b>Velocity Limits</b>: recommended air velocity ranges.</li>
+  </ul>
+
+  <h2>Exporting a PDF job sheet</h2>
+  <ol>
+    <li>Tap <b>Export PDF Job Sheet</b>.</li>
+    <li>A short sponsored ad appears first. Wait for the countdown, then tap <b>Continue to PDF</b>.</li>
+    <li>Enter the job / system name, client location and technician name.</li>
+    <li>Tap <b>Generate PDF</b> to download or share the report.</li>
+  </ol>
+  <p>The ad helps keep this calculator free.</p>
+
+  <h2>Tips and disclaimer</h2>
+  <ul>
+    <li>Typical comfort-duct velocities are 600-900 fpm for branches and up to about 1,500 fpm for mains.</li>
+    <li>Results are for guidance only. Verify against local codes and the engineer of record.</li>
+    <li>Your data stays on your device and is not sent to a server. See the <a href="privacy.html">privacy policy</a>.</li>
+  </ul>
+</main>
+</body>
+</html>

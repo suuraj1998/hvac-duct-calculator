@@ -14,6 +14,7 @@ import '../widgets/web_ad_gate.dart';
 import 'onboarding/onboarding_screen.dart';
 import 'reference_library_screen.dart';
 import 'paywall_screen.dart';
+import 'user_manual_screen.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
@@ -367,6 +368,14 @@ class _CalculatorScreenState extends State<CalculatorScreen>
             icon: const Icon(Icons.restart_alt, color: Color(0xFFEF4444)),
             tooltip: 'Reset App & Start From Beginning',
             onPressed: _performFullAppReset,
+          ),
+          IconButton(
+            icon: const Icon(Icons.help_outline, color: Color(0xFFCBD5E1)),
+            tooltip: 'User Guide',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const UserManualScreen()),
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.menu_book, color: Color(0xFF06B6D4)),

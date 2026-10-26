@@ -9,7 +9,7 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(html|js|json)",
+        "source": "**/*.@(html|js|json|wasm|mjs)",
         "headers": [
           {
             "key": "Cache-Control",

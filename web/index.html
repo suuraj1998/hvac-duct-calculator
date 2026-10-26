@@ -31,6 +31,19 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <script>
+    // Drop any old service worker / caches so each new deploy loads fresh.
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (regs) {
+        regs.forEach(function (r) { r.unregister(); });
+      });
+    }
+    if (window.caches) {
+      caches.keys().then(function (keys) {
+        keys.forEach(function (k) { caches.delete(k); });
+      });
+    }
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
